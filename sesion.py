@@ -12,18 +12,13 @@ def top_counts(count_dict, n=5):
     value_key_pairs = [(count, name) for name, count in count_dict.items()]
     value_key_pairs.sort()
     return value_key_pairs[-n:]
-    
+
+def top_issues_by_project(issues, n=3):
+    value_key_pairs = [(count,name) for name, count in issues.items()]
+    return value_key_pairs[-n:] 
+
 def open_issues(count_dict):
-    items = []
-    #for item in count_dict:   
-    #    if 'status' in item and item['status']['name'] == 'Nueva':
-    #        print item['status']
-    #        if item['status'] == 'Nueva':
-    #            print item['status']
-    #            items = (item['id'],item['status']['name'])
-    #return items 
-    
-    items = [(item['id'], item['project']['name'],item['subject']) 
+    items = [{ 'id': item['id'], 'name': item['project']['name'], 'subject': item['subject']} 
             for item in count_dict if 'status' in item and item['status']['name'] == 'Nueva']
     return items
         
