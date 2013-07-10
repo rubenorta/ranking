@@ -22,9 +22,10 @@ def open_issues(count_dict):
             for item in count_dict if 'status' in item and item['status']['name'] == 'Nueva']
     return items
         
-path = "/home/ruben/Development/datapy/issues.json"
+#path = "/home/ruben/Development/datapy/issues.json"
+path = "/home/ruben/Development/ranking/dump.json"
 issues = [json.loads(line) for line in open(path)]
-records = issues[0]['issues']
+records = issues[0]
 ninjas = [rec['assigned_to']['name'] for rec in records if 'assigned_to' in rec]
 status = [rec['status']['name'] for rec in records if 'status' in rec]
 #counts = get_counts(ninjas)
