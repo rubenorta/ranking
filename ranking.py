@@ -1,6 +1,5 @@
 import json
-from pandas import DataFrame
-
+from pandas import Series, DataFrame
 def get_by_status(count_dict,status):
     items = [{ 'id': item['id'], 'name': item['project']['name'], 'subject': item['subject']} 
             for item in count_dict if 'status' in item and item['status']['name'] == status]
@@ -11,7 +10,7 @@ def format_issue(issue):
     if 'assigned_to' in issue:
         data.append(issue['assigned_to']['name'])
     else:
-        data.append('')
+        data.append('NaN')
     return data
     
 path = "/home/ruben/Development/ranking/dump.json"
@@ -21,4 +20,4 @@ records = issues[0]
 the_list = []
 for record in records:
     the_list.append(format_issue(record))
-    
+index = ['id','proyecto','estado','creado','actualizado','asunto','quien']
